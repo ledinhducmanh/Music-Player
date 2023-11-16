@@ -1,0 +1,176 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+* , *::after , *::before {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+:root {
+    --white: #fff;
+}
+html::-webkit-scrollbar {
+    width: 10px;
+}
+html::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 26px;
+}
+html::-webkit-scrollbar-track {
+    background: rgb(2,0,36);
+    background: linear-gradient(150deg, rgba(2,0,36,1) 0%, rgba(8,34,64,1) 0%, rgba(52,18,42,1) 100%);
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    background-image: url('/assets/img/terminal.jpg');
+    background: rgb(2,0,36);
+    background: linear-gradient(150deg, rgba(2,0,36,1) 0%, rgba(8,34,64,1) 0%, rgba(52,18,42,1) 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+    user-select: none;
+}
+.player {
+    position: relative;
+    max-width: 480px;
+    margin: 0 auto;
+}
+.dashboard {
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    max-width: 480px;
+    width: 100%;
+    border: 1px solid var(--white);
+    background: transparent;
+    backdrop-filter: blur(50px);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+    border-radius: 26px;
+
+}
+header {
+    text-align: center;
+}
+header h4 {
+    color: pink;
+}
+header h2 {
+    color: var(--white);
+    letter-spacing: 2px;
+}
+.cd {
+    display: flex;
+    justify-content: center;
+}
+.cd-thumb {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-top: 20px;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+    /* animation: rotating 10s linear infinite; */
+
+}
+.control {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: var(--white);
+    margin-top: 20px;
+    font-size: 20px;
+}
+.progress {
+    width: 100%;
+    margin-top: 30px;
+}
+.btn {
+    cursor: pointer;
+}
+.btn-toggle {
+    height: 50px;
+    width: 50px;
+    background-color: rgb(150, 23, 65);
+    border-radius: 50%;
+    display: flex;
+    transition: transform .2s;
+
+}
+.btn-toggle:hover {
+    transform: scale(1.1)
+}
+
+
+.btn-toggle i {
+    margin: auto;
+}
+
+.play-list {
+    margin-top: 470px;
+}
+
+.song {
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+    border: 1px solid var(--white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 26px;
+
+}       
+.thumb {
+    height: 60px;
+    width: 60px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50%;
+    margin-right: 20px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+
+}
+.body {
+    color: var(--white);
+    margin-right: auto;
+}
+.option {
+    color: var(--white);
+    font-size: 30px;
+}
+
+.playing .btn-toggle .control-play {
+    display: none;
+}
+.playing .btn-toggle .control-pause {
+    display: block;
+}
+.btn-toggle .control-pause {
+    display: none;
+}
+
+.audio {
+    display: none;
+}
+
+@keyframes rotating {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+input[type="range"]::-webkit-slider-runnable-track {
+    background: rgb(2,0,36);
+    background: linear-gradient(150deg, rgba(2,0,36,1) 0%, rgba(8,34,64,1) 33%, rgba(52,18,42,1) 100%);
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+}
+.active {
+    color: pink;
+}
+

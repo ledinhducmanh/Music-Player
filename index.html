@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="shortcut icon" href="./assets/img/TinhYeuChamTre.jpg" type="image/x-icon">
+</head>
+<body>
+    <div class="player">
+        <!-- Dashboard -->
+        <div class="dashboard">
+            <!-- Header -->
+            <header>
+                <h4>Now playing</h4>
+                <h2></h2>
+            </header>
+        
+            <!-- CD -->
+            <div class="cd">
+                <div class="cd-thumb"></div>
+            </div>
+            <!-- Control -->
+            <div class="control">
+                <div class="btn btn-repeat">
+                    <i class="fa-solid fa-repeat control-repeat"></i>
+                </div>
+                <div class="btn btn-backward">
+                    <i class="fa-solid fa-backward control-backward"></i>
+                </div>
+                <div class="btn btn-toggle">
+                    <i class="fa-solid fa-pause control-pause"></i>
+                    <i class="fa-solid fa-play control-play"></i>
+                </div>
+                <div class="btn btn-forward">
+                    <i class="fa-solid fa-forward control-forward"></i>
+                </div>
+                <div class="btn btn-random">
+                    <i class="fa-solid fa-shuffle control-random"></i>
+                </div>
+            </div>
+            <input id="progress" class="progress" type="range">
+            <audio id="audio" class="audio"></audio>
+        </div>
+        <div class="play-list">
+            <div class="song">
+                <div class="thumb"></div>
+                <div class="body">
+                    <h3 class="title">Hit Me Up</h3>
+                    <p class="author">Binz</p>
+                </div>
+                <div class="option">
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</body>
+<script>
+    const songs = [
+        {
+            name: 'Hit Me Up',
+            singer: 'Binz',
+            path: "./assets/music/HitMeUp.mp3",
+            img: "./assets/img/HitMeUp.jpg"
+        },
+        {
+            name: 'Chìm Sâu',
+            singer: 'MCK ft Trung Trần',
+            path: "./assets/music/HitMeUp.mp3",
+            img: "./assets/img/ChimSau.jpg"
+        },
+        {
+            name: 'Tình Cờ Yêu Em',
+            singer: 'Kuun Đức Nam ft Linh Thộn',
+            path: "./assets/music/TinhCoYeuEm.mp3",
+            img: "./assets/img/TinhCoYeuEm.jpg"
+        },
+        {
+            name: 'Tình Yêu Chậm Trễ',
+            singer: 'MONSTAR · GREY D',
+            path: "./assets/music/TinhYeuChamTre.mp3",
+            img: "./assets/img/TinhYeuChamTre.jpg"
+        },
+
+    ]
+</script>
+<script src="./main.js"></script>
+<script src="./renderer.js"></script>
+</html>
