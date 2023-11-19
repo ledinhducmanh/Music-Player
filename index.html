@@ -41,53 +41,37 @@
                     <i class="fa-solid fa-shuffle control-random"></i>
                 </div>
             </div>
-            <input id="progress" class="progress" type="range">
+            <div class="progress-all-bar">
+                <span class="time time-left">0:00</span>
+                <input id="progress" class="progress" type="range">
+                <span class="time time-right">0:00</span>
+                <div class="volume-control">
+                    <button class="btn-volume">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <input type="range" id="volumeProgressBar" min="0" max="1" step="0.1" value="1">
+                </div>
+            </div>
             <audio id="audio" class="audio"></audio>
         </div>
         <div class="play-list">
             <div class="song">
                 <div class="thumb"></div>
                 <div class="body">
-                    <h3 class="title">Hit Me Up</h3>
-                    <p class="author">Binz</p>
+                    <h3 class="title">Title Song</h3>
+                    <p class="author">Artist</p>
                 </div>
                 <div class="option">
                     <i class="fas fa-ellipsis-h"></i>
+                    <div class="option-menu">
+                        <p>Delete Song</p>
+                    </div>
                 </div>
             </div>
-            
         </div>
     </div>
-</body>
-<script>
-    const songs = [
-        {
-            name: 'Hit Me Up',
-            singer: 'Binz',
-            path: "./assets/music/HitMeUp.mp3",
-            img: "./assets/img/HitMeUp.jpg"
-        },
-        {
-            name: 'Chìm Sâu',
-            singer: 'MCK ft Trung Trần',
-            path: "./assets/music/HitMeUp.mp3",
-            img: "./assets/img/ChimSau.jpg"
-        },
-        {
-            name: 'Tình Cờ Yêu Em',
-            singer: 'Kuun Đức Nam ft Linh Thộn',
-            path: "./assets/music/TinhCoYeuEm.mp3",
-            img: "./assets/img/TinhCoYeuEm.jpg"
-        },
-        {
-            name: 'Tình Yêu Chậm Trễ',
-            singer: 'MONSTAR · GREY D',
-            path: "./assets/music/TinhYeuChamTre.mp3",
-            img: "./assets/img/TinhYeuChamTre.jpg"
-        },
 
-    ]
-</script>
+    <p class="screen">This does not support this application display resolution. Please change the app screen resolution.</p>
+</body>
 <script src="./main.js"></script>
-<script src="./renderer.js"></script>
 </html>
