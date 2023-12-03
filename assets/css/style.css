@@ -78,9 +78,11 @@ header h2 {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    color: var(--white);
     margin-top: 20px;
-    font-size: 20px;
+}
+.control button {
+    background-color: transparent;
+    border: none;
 }
 .progress {
     width: 70%;
@@ -90,25 +92,23 @@ header h2 {
 /* Btn */
 .btn {
     cursor: pointer;
+    color: var(--white);
+    font-size: 20px;
 }
 .btn-toggle {
     height: 50px;
     width: 50px;
-    background-color: rgb(150, 23, 65);
+    background-color: rgb(150, 23, 65) !important;
     border-radius: 50%;
     display: flex;
     transition: all .2s;
-
 }
 .btn-toggle:hover {
     transform: scale(1.1)
 }
-
-
 .btn-toggle i {
     margin: auto;
 }
-
 .play-list {
     margin-top: 470px;
 }
