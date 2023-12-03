@@ -39,6 +39,11 @@ const repeatSong = $('.btn-repeat')
 
 const playList = $('.play-list')
 
+const api = 'https://lemanh-api.onrender.com/songs'
+
+var iconPage = $('link[rel="shortcut icon"]');
+
+
 const appPlayer = {
     currentIndex: 0,
     isPlay: false,
@@ -49,64 +54,16 @@ const appPlayer = {
     //     this.config[key] = value
     //     localStorage.setItem(PLAYER_STORAGE_KEY, JSON.stringify(this.config))
     // },
-    songs: [
-        {
-            name: 'Tình Cờ Yêu Em',
-            singer: 'Kuun Đức Nam ft Linh Thộn',
-            path: "./assets/music/TinhCoYeuEm.mp3",
-            img: "./assets/img/TinhCoYeuEm.jpg"
-        },
-        {
-            name: 'Tình Yêu Chậm Trễ',
-            singer: 'MONSTAR · GREY D',
-            path: "./assets/music/TinhYeuChamTre.weba",
-            img: "./assets/img/TinhYeuChamTre.jpg"
-        },
-        {
-            name: 'Bao tiền một mớ bình yên',
-            singer: '14 Casper, Bon Nghiêm',
-            path: "./assets/music/BaoTienMotMoBinhYen.mp3",
-            img: "./assets/img/BaoTienMotMoBinhYen.jpg"
-        },
-        {
-            name: 'Tháng năm',
-            singer: 'Soobin Hoàng Sơn',
-            path: "./assets/music/ThangNam.mp3",
-            img: "./assets/img/ThangNam.png"
-        },
-        {
-            name: 'Sinh ra đã là thứ đối lập nhau',
-            singer: 'Emcee L (Da  LAB) ft. Badbies',
-            path: "./assets/music/SinhRaDaLaThuDoiLapNhau.mp3",
-            img: "./assets/img/SinhRaDaLaThuDoiLapNhau.png"
-        },
-        {
-            name: 'Nàng thơ',
-            singer: 'Hoàng Dũng',
-            path: "./assets/music/NangTho.mp3",
-            img: "./assets/img/NangTho.png"
-        },
-        {
-            name: 'Chờ đợi có đáng sợ',
-            singer: 'Andiez',
-            path: "./assets/music/ChoDoiCoDangSo.mp3",
-            img: "./assets/img/ChoDoiCoDangSo.png"
-        },
-        {
-            name: 'Đường tôi chở em về',
-            singer: 'buitruonglinh',
-            path: "./assets/music/DuongToiChoEmVe.mp3",
-            img: "./assets/img/DuongToiChoEmVe.png"
-        },
-        {
-            name: 'Như anh đã thấy em',
-            singer: 'PhucXp',
-            path: "./assets/music/NhuAnhDaThayEm.mp3",
-            img: "./assets/img/NhuAnhDaThayEm.jpg"
-        },
-        
-    ],
+    songs: [],
+    fetchSongs() {
+        return fetch(api)
+            .then((response) => response.json())
+            .then((songs) => {
+                this.songs = songs;
+            });
+    },    
     render() {
+        console.log(this.songs)
         const html = this.songs.map((song , index) => {
             return `
                 <div class="song ${index === this.currentIndex ? 'activeSong' : ''}" data-index="${index}">
@@ -127,15 +84,20 @@ const appPlayer = {
 
         playList.innerHTML = html.join('')
     },
-    defindProperties() {
-        //                  Biến appPlayer | Tên key | Giá trị sẽ đưa ra khi được gọi: appPlayer.currentSong return (*)
-        //                      |         |               |
-        //                      V         V               V
-        Object.defineProperty(this , 'currentSong', {
-            get() {
-                return this.songs[this.currentIndex] // (*)
-            }
-        })
+    defineProperties() {
+        if (!Object.getOwnPropertyDescriptor(this, 'currentSong')) {
+            //                  Biến appPlayer | Tên key | Giá trị sẽ đưa ra khi được gọi: appPlayer.currentSong return (*)
+            //                      |         |               |
+            //                      V         V               V
+            Object.defineProperty(this, 'currentSong', {
+                get currentSong() {
+                    return this.songs[this.currentIndex];
+                }                
+            });
+        }
+    },
+    get currentSong() {
+        return this.songs[this.currentIndex];
     },
     handleEvent() {
         // Xử Lý Scroll top CD
@@ -215,6 +177,7 @@ const appPlayer = {
             _this.playSong();
             _this.render()
             _this.scrollToActiveSong()
+            _this.changeIconPage()
         };
 
         // Previous song
@@ -229,6 +192,7 @@ const appPlayer = {
             _this.playSong();
             _this.render()
             _this.scrollToActiveSong()
+            _this.changeIconPage()
 
         };
 
@@ -240,6 +204,7 @@ const appPlayer = {
             _this.playSong()
             _this.render()
             _this.scrollToActiveSong()
+            _this.changeIconPage()
         }
         
         // Xử lý khi Audio kết thúc 
@@ -287,6 +252,7 @@ const appPlayer = {
                         _this.loadCurentSong();
                         _this.playSong();
                         _this.render();
+                        _this.changeIconPage()
                     };
                 }
                 // Xử lý click vào Option
@@ -326,6 +292,9 @@ const appPlayer = {
             timeRight.innerText = _this.formatTime(audio.duration);
         };
 
+    },
+    changeIconPage() {
+        iconPage.href = this.songs[this.currentIndex].img
     },
     removeSong(index) {
         this.songs.splice(index, 1);
@@ -386,9 +355,13 @@ const appPlayer = {
         }
     },
     loadCurentSong() {
-        nameCurrentSong.innerHTML = this.currentSong.name
-        cdPlayer.style.backgroundImage = `url(${this.currentSong.img})`
-        audio.src = this.currentSong.path
+        if (this.currentSong) {
+            nameCurrentSong.innerHTML = this.currentSong.name
+            cdPlayer.style.backgroundImage = `url(${this.currentSong.img})`
+            audio.src = this.currentSong.path
+        } else {
+            console.error("Current song is undefined");
+        }
     },
     // loadConfig() {
     //     this.isRandom = this.config.isRandom
@@ -396,17 +369,17 @@ const appPlayer = {
     // },
     start() {
         // Định nghĩa thuộc tính cho OBJ
-        this.defindProperties()
-
-        // this.loadConfig()
+        this.defineProperties();
+    
         // Xử lý DOM Event
-        this.handleEvent()
-        // Tải thông tin bài hát đầu tiên vào UI khi chạy appPlayer
-        this.loadCurentSong()
-        
-        // Render Playlist
-        this.render()
-    }
-
+        this.handleEvent();
+    
+        // Fetch songs and render playlist
+        this.fetchSongs().then(() => {
+            this.render();
+            this.loadCurentSong();
+        });
+    }     
 }
 appPlayer.start()
+
