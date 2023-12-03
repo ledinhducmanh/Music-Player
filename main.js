@@ -42,6 +42,7 @@ const playList = $('.play-list')
 const api = 'https://lemanh-api.onrender.com/songs'
 
 var iconPage = $('link[rel="shortcut icon"]');
+var titlePage = $('title')
 
 
 const appPlayer = {
@@ -295,6 +296,7 @@ const appPlayer = {
     },
     changeIconPage() {
         iconPage.href = this.songs[this.currentIndex].img
+        titlePage.innerText = this.songs[this.currentIndex].name
     },
     removeSong(index) {
         this.songs.splice(index, 1);
