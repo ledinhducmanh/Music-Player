@@ -127,8 +127,8 @@ header h2 {
     opacity: .8;
 }
 .thumb {
-    height: 60px;
-    width: 60px;
+    min-height: 60px;
+    min-width: 60px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
