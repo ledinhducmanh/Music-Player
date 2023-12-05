@@ -278,4 +278,15 @@ input[type="range"]::-webkit-slider-runnable-track {
     color: var(--white);    
     min-width: 42px;
 }
+/* Footer */
 
+footer {
+    text-align: center;
+    color: var(--white);
+    height: 100px;
+    font-size: 14px;
+}
+footer a {
+    text-decoration: none;
+    color: #2c90fc;
+}
