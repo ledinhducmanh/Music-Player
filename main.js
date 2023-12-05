@@ -127,7 +127,7 @@ const appPlayer = {
             } else {
                 audio.play()
             }
-            
+            _this.changeIconPage()
         }
         
         // Khi Song được Play 
