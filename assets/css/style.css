@@ -292,7 +292,7 @@ footer a {
 }
 
 #preload {
-    background: #000 url('/assets/img/preloader.gif') center center no-repeat;
+    background: #000 url('./assets/img/preloader.gif') center center no-repeat;
     inset: 0;
     position: fixed;
     z-index: 1000;
