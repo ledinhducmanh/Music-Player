@@ -290,3 +290,11 @@ footer a {
     text-decoration: none;
     color: #2c90fc;
 }
+
+#preload {
+    background: #000 url('/assets/img/preloader.gif') center center no-repeat;
+    inset: 0;
+    position: fixed;
+    z-index: 1000;
+    display: block;
+}
