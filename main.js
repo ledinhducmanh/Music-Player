@@ -44,6 +44,8 @@ const api = 'https://lemanh-api.onrender.com/songs'
 var iconPage = $('link[rel="shortcut icon"]');
 var titlePage = $('title')
 
+const preLoadingPage = $('#preload')
+
 
 const appPlayer = {
     currentIndex: 0,
@@ -57,11 +59,22 @@ const appPlayer = {
     // },
     songs: [],
     fetchSongs() {
+        this.isFetching = true;
         return fetch(api)
             .then((response) => response.json())
             .then((songs) => {
                 this.songs = songs;
+            })
+            .finally(() => {
+                this.isFetching = false;
             });
+    },
+    preLoading() {
+        window.addEventListener('load', () => {
+            if (!appPlayer.isFetching) {
+                preLoadingPage.style.display = 'none';
+            }
+        });
     },    
     render() {
         console.log(this.songs)
@@ -370,18 +383,24 @@ const appPlayer = {
     //     this.isRepeat = this.config.isRepeat
     // },
     start() {
+        this.preLoading();
+
         // Định nghĩa thuộc tính cho OBJ
         this.defineProperties();
-    
+
         // Xử lý DOM Event
         this.handleEvent();
-    
+
         // Fetch songs and render playlist
         this.fetchSongs().then(() => {
             this.render();
             this.loadCurentSong();
+            this.hidePreloader();
         });
-    }     
+    },
+    hidePreloader() {
+        preLoadingPage.style.display = 'none';
+    },   
 }
 appPlayer.start()
 
